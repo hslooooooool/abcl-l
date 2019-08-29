@@ -1,5 +1,8 @@
 # 使用配置
-添加仓库，最新版本[![](https://jitpack.io/v/hslooooooool/abcl-lib.svg)](https://jitpack.io/#hslooooooool/abcl-lib)
+添加仓库，最新版本
+
+[![](https://jitpack.io/v/hslooooooool/abcl-l.svg)](https://jitpack.io/#hslooooooool/abcl-l)
+
 ```
 allprojects {
     repositories {
@@ -9,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.hslooooooool:abcl-lib:[Tag]'
+    implementation 'com.github.hslooooooool:abcl-l:[Tag]'
 }
 ```
 引用后APP配置参考，其它配置参考项目根目录下base.gradle配置文件：
@@ -50,7 +53,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    api 'com.github.hslooooooool:abcl-lib:1.1'
+    api 'com.github.hslooooooool:abcl-l:1.0'
 }
 ```
 
