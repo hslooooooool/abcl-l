@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+
+apply from: '../base.gradle'
+apply from: '../push.gradle'
+
+dependencies {
+
+    // Room
+    api deps.room.runtime
+    api deps.room.rxjava2
+    kapt deps.room.compiler
+
+    // RxJava
+    api deps.rx_android
+    api deps.rxjava2
+
+    // Retrofit
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.retrofit.mock
+    api deps.retrofit.adapter
+
+    // OkHttp
+    api deps.okio
+    api deps.okhttp3
+    api deps.okhttp3_mock
+    api deps.okhttp3_logging
+
+    // Kotlin
+    api deps.kotlin.stdlib
+    api deps.kotlin.coroutines
+    testImplementation deps.kotlin.test
+
+    // Resolve conflicts between main and test APK
+    api deps.support.annotations
+    api deps.support.app_compat
+    api deps.support.material
+    api deps.support.cardview
+    api deps.support.design
+    api deps.support.core_ktx
+    api deps.constraint_layout
+
+    // ARouter
+    api deps.arouter
+    kapt deps.arouter_compiler
+
+    // Glide
+    api deps.glide.runtime
+    kapt deps.glide.compiler
+
+    // DEX
+    api deps.multidex
+
+    // Rx方式权限请求
+    api deps.rxpermissions
+
+    // Log
+    api deps.timber
+
+    // Lifecycle
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    api deps.lifecycle.java8
+    api deps.lifecycle.viewmodel
+    api deps.lifecycle.viewmodel_ktx
+    api deps.lifecycle.livedata
+    api deps.lifecycle.reactivestreams
+    annotationProcessor deps.lifecycle.compiler
+
+}
