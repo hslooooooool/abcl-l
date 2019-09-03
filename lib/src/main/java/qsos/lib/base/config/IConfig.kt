@@ -11,4 +11,5 @@ interface IConfig {
 
     /**开启日志打印*/
     var debugTimber: Boolean
+
 }

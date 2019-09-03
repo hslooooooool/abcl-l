@@ -5,7 +5,7 @@ import timber.log.Timber
 
 /**
  * @author 华清松
- * @doc 类说明：日志打印工具
+ * 日志打印工具
  */
 object LogUtil {
 

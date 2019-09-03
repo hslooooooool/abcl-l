@@ -16,4 +16,13 @@ object ToastUtils {
         toast.show()
     }
 
+    fun showToastLong(context: Context?, msg: String) {
+        if (context == null || TextUtils.isEmpty(msg)) {
+            return
+        }
+        val toast = Toast.makeText(context, msg, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
+    }
+
 }

@@ -16,9 +16,6 @@ dependencies {
 
     // Retrofit
     api deps.retrofit.runtime
-    api deps.retrofit.gson
-    api deps.retrofit.mock
-    api deps.retrofit.adapter
 
     // OkHttp
     api deps.okio
