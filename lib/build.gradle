@@ -14,9 +14,6 @@ dependencies {
     api deps.rx_android
     api deps.rxjava2
 
-    // Retrofit
-    api deps.retrofit.runtime
-
     // OkHttp
     api deps.okio
     api deps.okhttp3
