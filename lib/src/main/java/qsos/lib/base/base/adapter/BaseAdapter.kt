@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import qsos.lib.base.base.holder.BaseHolder
 import qsos.lib.base.callback.OnListItemClickListener
@@ -13,11 +16,17 @@ import qsos.lib.base.callback.OnListItemClickListener
  * @author : 华清松
  * BaseAdapter
  */
-abstract class BaseAdapter<T>(
-        var data: ArrayList<T>
-) : RecyclerView.Adapter<BaseHolder<T>>(), OnListItemClickListener {
+abstract class BaseAdapter<T> constructor(
+        var data: ArrayList<T>,
+        private val mRecyclerView: RecyclerView? = null,
+        mLifecycle: Lifecycle? = null
+) : RecyclerView.Adapter<BaseHolder<T>>(), OnListItemClickListener, DefaultLifecycleObserver {
 
-    lateinit var mHolder: BaseHolder<T>
+    init {
+        mLifecycle?.addObserver(this)
+    }
+
+    var mHolder: HashMap<Int, BaseHolder<T>> = HashMap()
     lateinit var mContext: Context
 
     /**让子类实现用以提供 BaseHolder */
@@ -32,8 +41,8 @@ abstract class BaseAdapter<T>(
         val viewId = getLayoutId(viewType)
         val view: View
         view = LayoutInflater.from(mContext).inflate(viewId, parent, false)
-        mHolder = getHolder(view, viewType)
-        return mHolder
+        mHolder[viewType] = getHolder(view, viewType)
+        return mHolder[viewType]!!
     }
 
     /**绑定数据*/
@@ -51,16 +60,20 @@ abstract class BaseAdapter<T>(
         return data[position]
     }
 
+    override fun onDestroy(owner: LifecycleOwner) {
+        release()
+        super.onDestroy(owner)
+    }
+
     /**遍历所有 RecyclerView 中的 Holder,释放他们需要释放的资源*/
-    fun release(recyclerView: RecyclerView?) {
-        if (recyclerView == null) {
-            return
-        }
-        (recyclerView.childCount - 1 downTo 0).forEach { i ->
-            val view = recyclerView.getChildAt(i)
-            val viewHolder = recyclerView.getChildViewHolder(view)
-            if (viewHolder != null && viewHolder is BaseHolder<*>) {
-                viewHolder.release()
+    open fun release() {
+        mRecyclerView?.let {
+            (it.childCount - 1 downTo 0).forEach { i ->
+                val view = it.getChildAt(i)
+                val viewHolder = it.getChildViewHolder(view)
+                if (viewHolder != null && viewHolder is BaseHolder<*>) {
+                    viewHolder.release()
+                }
             }
         }
     }

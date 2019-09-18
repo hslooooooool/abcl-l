@@ -9,15 +9,9 @@ import qsos.lib.base.base.holder.BaseHolder
  */
 class BaseNormalHolder<T>(
         val view: View,
-        private val setHolder: (holder: BaseHolder<T>, data: T, position: Int) -> Unit,
-        private val doRelease: () -> Unit = {}
+        private val setHolder: (holder: BaseHolder<T>, data: T, position: Int) -> Unit
 ) : BaseHolder<T>(view) {
     override fun setData(data: T, position: Int) {
         setHolder(this, data, position)
-    }
-
-    override fun release() {
-        super.release()
-        doRelease()
     }
 }
