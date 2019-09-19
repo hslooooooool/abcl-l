@@ -23,6 +23,11 @@ abstract class BaseFragment : Fragment(), BaseView {
             field = value
         }
 
+    override var isOrientation: Boolean = true
+        protected set(value) {
+            field = value
+        }
+
     override val defLayoutId: Int = R.layout.base_default
 
     lateinit var mContext: Context
