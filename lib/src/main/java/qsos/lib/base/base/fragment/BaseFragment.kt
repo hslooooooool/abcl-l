@@ -58,11 +58,8 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
         LogUtil.i("创建:${javaClass.name}")
-
         mContext = this.context!!
-
         mainView = inflater.inflate(layoutId ?: defLayoutId, container, false)
-
         return mainView
     }
 
