@@ -1,7 +1,5 @@
 # 使用配置
-添加仓库，最新版本
-
-[![](https://jitpack.io/v/hslooooooool/abcl-l.svg)](https://jitpack.io/#hslooooooool/abcl-l)
+添加仓库，l_version=[![](https://jitpack.io/v/hslooooooool/abcl-l.svg)](https://jitpack.io/#hslooooooool/abcl-l)
 
 ```
 allprojects {
@@ -12,7 +10,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.hslooooooool:abcl-l:[Tag]'
+    implementation 'com.github.hslooooooool:abcl-l:l_version'
 }
 ```
 引用后APP配置参考，其它配置参考项目根目录下base.gradle配置文件：
@@ -53,7 +51,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    api 'com.github.hslooooooool:abcl-l:1.0'
+    api 'com.github.hslooooooool:abcl-l:l_version'
 }
 ```
 
@@ -71,48 +69,50 @@ dependencies {
 
 ## 模块设计
 
-### 1级层面-数据结构与常量管理模块（仅开发时。推荐在你的项目中此层引用abcl-l，然后将下列数据保存在此层面）
+### 1层-数据结构与常量管理模块（仅开发时。推荐在你的项目中此层引用abcl-l，然后将下列数据保存在此层面）
 数据结构作为系统设计的最重要一环，承载了后续接口设计、逻辑处理等工作的开展，所以作为最底层依赖，供所有模块使用。
 
 常量管理包括路由地址管理、全局常量管理、框架配置管理等。
 
-### 2级层面-基础架构模块
-基础架构定义项目后续研发的基准开发与编码方式，如MVC/MVP/MVVM的开发方式，尽可能的成都统一规范开发标准。
+### 2层-基础架构模块
+基础架构定义项目后续研发的基准开发与编码方式，如MVC/MVP/MVVM的开发方式，尽可能的统一团队的开发规范。
 
 包括以下几点：
-- MVC/MVP/MVVM基础设计搭建——抽象实现
+- BaseActivity/BaseFragment/BaseAdapter/BaseHodler等抽象实现
 - 各场景下的逻辑处理标准——抽象实现
-- Activity页面管理
-- Module生命周期管理
+- Activity页面路由-ARouter
 
-### 2级层面-独立功能模块
+### 2层-独立功能模块
 独立功能模块涵盖所有可单独实现的功能，涵盖以下功能：
-- 网络请求
-- 图片加载
+- 网络请求-OkHttp/Retrofit/RxJava/Coroutine
+- 图片加载-Glide封装
+- 异常捕获-Timber封装
+- 动态表单
+- 动态流程
 - 异常捕获
-- 日志系统
+- 日志系统-Timber封装
 - 埋点统计
 - 缓存管理
-- 文件上传与下载
-- 文件选择（拍照、录像、录音、文件选择）
+- 文件上传与下载，断点续传
+- 文件选择（拍照、录像、录音、文件）
 - 文件解压缩
 - 文件读写工具
 - web容器
 - JsBridge调用
 
-### 3级层面-基础业务模块
-基础业务架构定义项目统一处理逻辑与实现，如网络请求错误统一处理方式、通用异常处理逻辑，以及各类业务的通用处理逻辑实现。
+### 3层-基础业务模块
+基础业务架构定义项目领域类业务的统一处理逻辑与实现，如登录、注册、聊天、流程模板与管理等，以及各类业务的通用处理逻辑。
 
-### 4级层面-独立业务模块
-独立业务模块为具体业务的唯一实现，以开发的接口方式对外提供服务。
+### 4层-独立业务模块
+独立业务模块为具体业务的唯一实现，如个人中心中对用户个人进行的相关业务的集合（登录、注册、密码找回/修改、个人信息更新等）。
 
-### 5级层面-Module壳
+### 5层-Module壳
 作为独立模块的壳工程，使Module可独立打包运行并进行测试。
 
-创建独立Module时自动生成，减少工作量。
+每一个Module壳工程理应在创建独立业务模块的时候自动生成，减少工作量。
 
-### 5级层面-APP壳
-打包、混淆配置
+### 5层-APP壳
+打包、混淆配置、进行工程初始化操作、配置等。
 
 # 签名信息
 
@@ -137,3 +137,9 @@ release {
 
 # 参考
 [有赞商城-Android组件化方案](https://tech.youzan.com/you-zan-yi-dong-androidzu-jian-hua-fang-an/)
+
+# 相关
+- [ABCL安卓快速开发框架](https://github.com/hslooooooool/abcl)
+- [ABCL安卓快速开发框架之L层](https://github.com/hslooooooool/abcl-l)
+- [ABCL安卓快速开发框架之C层](https://github.com/hslooooooool/abcl-c)
+- [ABCL测试使用的后台代码](https://github.com/hslooooooool/ktorm-demo)
