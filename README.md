@@ -1,3 +1,6 @@
+# 概要
+ABCL-L层提供基础模块的封装和抽象，主要为BaseActivity/BaseFragment/BaseAdapter/BaseHodler和一些框架必要的接口与工具类等。
+
 # 使用配置
 添加仓库，l_version=[![](https://jitpack.io/v/hslooooooool/abcl-l.svg)](https://jitpack.io/#hslooooooool/abcl-l)
 
@@ -65,24 +68,23 @@ dependencies {
 - 日志工具Timmer
 - 事件总线LiveDataBus&EventBus
 
-> 关于LiveData：若View在不处于活动状态时IO线程多次变更LiveData，当View重新处于活动状态时将收到最后一条对LiveData的变化推送，不会像消息队列一样重新发送未到达的消息，因此规定在LiveData.Observe中仅用于数据展示变化，不进行逻辑处理，否者可能导致View.stop->View.resume时LiveData.Observe重复执行；因此对逻辑处理必须在主线程进行，否则直接丢弃处理。
+> 关于LiveData：若View在不处于活动状态时IO线程多次变更LiveData，当View重新处于活动状态时将收到最后一条对LiveData的变化推送，不会像消息队列一样重新发送未到达的消息，因此规定在LiveData.Observe中仅用于数据展示变化，不进行逻辑处理，否者可能导致View.stop->View.resume时LiveData.Observe重复执行，此前项目中由于对观察者的滥用，导致某个接口重复调用，才发现此问题，重点强调一下，避免新入手LiveData的朋友出现我这个问题。现在框架引入了kotlin协程，并注重了这方面的检查，避免这个问题的再次发生。
 
 ## 模块设计
 
-### 1层-数据结构与常量管理模块（仅开发时。推荐在你的项目中此层引用abcl-l，然后将下列数据保存在此层面）
+### 1层-数据结构与常量管理模块（仅开发时。推荐在你的项目最底层引用abcl-l，并给予此进行拓展，当前框架此层即在abcl最底层-l层中）
 数据结构作为系统设计的最重要一环，承载了后续接口设计、逻辑处理等工作的开展，所以作为最底层依赖，供所有模块使用。
 
-常量管理包括路由地址管理、全局常量管理、框架配置管理等。
+常量管理包括路由地址管理、全局常量管理、配置、通用实体类等。
 
-### 2层-基础架构模块
+### 2层-基础架构模块(abcl-l)
 基础架构定义项目后续研发的基准开发与编码方式，如MVC/MVP/MVVM的开发方式，尽可能的统一团队的开发规范。
 
 包括以下几点：
 - BaseActivity/BaseFragment/BaseAdapter/BaseHodler等抽象实现
 - 各场景下的逻辑处理标准——抽象实现
-- Activity页面路由-ARouter
 
-### 2层-独立功能模块
+### 2层-独立功能模块(abcl-c)
 独立功能模块涵盖所有可单独实现的功能，涵盖以下功能：
 - 网络请求-OkHttp/Retrofit/RxJava/Coroutine
 - 图片加载-Glide封装
@@ -100,18 +102,18 @@ dependencies {
 - web容器
 - JsBridge调用
 
-### 3层-基础业务模块
+### 3层-基础业务模块(abcl-b)
 基础业务架构定义项目领域类业务的统一处理逻辑与实现，如登录、注册、聊天、流程模板与管理等，以及各类业务的通用处理逻辑。
 
-### 4层-独立业务模块
+### 3层-独立业务模块(abcl-b)
 独立业务模块为具体业务的唯一实现，如个人中心中对用户个人进行的相关业务的集合（登录、注册、密码找回/修改、个人信息更新等）。
 
-### 5层-Module壳
-作为独立模块的壳工程，使Module可独立打包运行并进行测试。
+### 4层-Module壳(abcl-a)
+作为独立模块的壳工程，使Module可独立打包运行并进行测试，这里就不使用传统的模块化gradle配置方式了，直接采用新建application module模块来实现对独立业务的demo撰写。
 
 每一个Module壳工程理应在创建独立业务模块的时候自动生成，减少工作量。
 
-### 5层-APP壳
+### 4层-APP壳(abcl-a)
 打包、混淆配置、进行工程初始化操作、配置等。
 
 # 签名信息
