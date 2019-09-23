@@ -65,7 +65,7 @@ dependencies {
 - 网络回调数据触发动作响应Function.()->Unit
 - 官方组件LifeCycle&LiveData&ViewMode&ROOM
 - 页面路由ARouter
-- 日志工具Timmer
+- 日志工具Timber
 - 事件总线LiveDataBus&EventBus
 
 > 关于LiveData：若View在不处于活动状态时IO线程多次变更LiveData，当View重新处于活动状态时将收到最后一条对LiveData的变化推送，不会像消息队列一样重新发送未到达的消息，因此规定在LiveData.Observe中仅用于数据展示变化，不进行逻辑处理，否者可能导致View.stop->View.resume时LiveData.Observe重复执行，此前项目中由于对观察者的滥用，导致某个接口重复调用，才发现此问题，重点强调一下，避免新入手LiveData的朋友出现我这个问题。现在框架引入了kotlin协程，并注重了这方面的检查，避免这个问题的再次发生。
