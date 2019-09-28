@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import qsos.lib.base.base.holder.BaseHolder
@@ -17,17 +16,11 @@ import qsos.lib.base.callback.OnListItemClickListener
  * BaseAdapter
  */
 abstract class BaseAdapter<T> constructor(
-        var data: ArrayList<T>,
-        private val mRecyclerView: RecyclerView? = null,
-        mLifecycle: Lifecycle? = null
+        open var data: ArrayList<T>,
+        open val mRecyclerView: RecyclerView? = null
 ) : RecyclerView.Adapter<BaseHolder<T>>(), OnListItemClickListener, DefaultLifecycleObserver {
 
-    init {
-        mLifecycle?.addObserver(this)
-    }
-
-    var mHolder: HashMap<Int, BaseHolder<T>> = HashMap()
-    lateinit var mContext: Context
+    open var mContext: Context? = null
 
     /**让子类实现用以提供 BaseHolder */
     abstract fun getHolder(view: View, viewType: Int): BaseHolder<T>
@@ -39,10 +32,8 @@ abstract class BaseAdapter<T> constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<T> {
         mContext = parent.context
         val viewId = getLayoutId(viewType)
-        val view: View
-        view = LayoutInflater.from(mContext).inflate(viewId, parent, false)
-        mHolder[viewType] = getHolder(view, viewType)
-        return mHolder[viewType]!!
+        val view: View = LayoutInflater.from(mContext!!).inflate(viewId, parent, false)
+        return getHolder(view, viewType)
     }
 
     /**绑定数据*/
