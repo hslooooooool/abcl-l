@@ -72,7 +72,7 @@ dependencies {
 
 ## 模块设计
 
-### 1层-数据结构与常量管理模块（仅开发时。推荐在你的项目最底层引用abcl-l，并给予此进行拓展，当前框架此层即在abcl最底层-l层中）
+### 1层-数据结构与常量管理模块（仅开发时。推荐在你的项目最底层引用abcl-l。）
 数据结构作为系统设计的最重要一环，承载了后续接口设计、逻辑处理等工作的开展，所以作为最底层依赖，供所有模块使用。
 
 常量管理包括路由地址管理、全局常量管理、配置、通用实体类等。
@@ -81,12 +81,12 @@ dependencies {
 基础架构定义项目后续研发的基准开发与编码方式，如MVC/MVP/MVVM的开发方式，尽可能的统一团队的开发规范。
 
 包括以下几点：
-- BaseActivity/BaseFragment/BaseAdapter/BaseHodler等抽象实现
+- BaseActivity/BaseFragment/BaseAdapter/BaseHolder等抽象实现
 - 各场景下的逻辑处理标准——抽象实现
 
 ### 2层-独立功能模块(abcl-c)
-独立功能模块涵盖所有可单独实现的功能，涵盖以下功能：
-- 网络请求-OkHttp/Retrofit/RxJava/Coroutine
+独立功能模块涵盖所有可单独实现的功能，如以下功能：
+- 网络请求-OkHttp/Retrofit/RxJava/Coroutines
 - 图片加载-Glide封装
 - 异常捕获-Timber封装
 - 动态表单
@@ -97,8 +97,7 @@ dependencies {
 - 缓存管理
 - 文件上传与下载，断点续传
 - 文件选择（拍照、录像、录音、文件）
-- 文件解压缩
-- 文件读写工具
+- 文件解压缩、读写工具
 - web容器
 - JsBridge调用
 
@@ -106,36 +105,17 @@ dependencies {
 基础业务架构定义项目领域类业务的统一处理逻辑与实现，如登录、注册、聊天、流程模板与管理等，以及各类业务的通用处理逻辑。
 
 ### 3层-独立业务模块(abcl-b)
-独立业务模块为具体业务的唯一实现，如个人中心中对用户个人进行的相关业务的集合（登录、注册、密码找回/修改、个人信息更新等）。
+独立业务模块为具体业务的唯一实现，如个人中心中对用户个人进行的相关业务的集合（登录、注册、密码找回/修改、个人信息更新、IM系统等）。
 
 ### 4层-Module壳(abcl-a)
 作为独立模块的壳工程，使Module可独立打包运行并进行测试，这里就不使用传统的模块化gradle配置方式了，直接采用新建application module模块来实现对独立业务的demo撰写。
 
 每一个Module壳工程理应在创建独立业务模块的时候自动生成，减少工作量。
 
+可开发插件，在创建abcl-b基础业务模块的时候自动生成。
+
 ### 4层-APP壳(abcl-a)
 打包、混淆配置、进行工程初始化操作、配置等。
-
-# 签名信息
-
-项目根目录依次执行：
-```
-keytool -genkey -alias qsos-abcl-lib -keypass qsos-abcl-lib-password -keyalg RSA -keysize 1024 -validity 36500 -keystore qsos-abcl-lib-release.keystore -storepass qsos-abcl-lib-password
-```
-
-```
-keytool -importkeystore -srckeystore qsos-abcl-lib-release.keystore -destkeystore qsos-abcl-lib-release.keystore -deststoretype pkcs12
-```
-
-项目APP的Gradle配置：
-```
-release {
-       keyAlias 'qsos-abcl-lib'
-       keyPassword 'qsos-abcl-lib-password'
-       storeFile file('../qsos-abcl-lib-release.keystore')
-       storePassword 'qsos-abcl-lib-password'
-}
-```
 
 # 参考
 [有赞商城-Android组件化方案](https://tech.youzan.com/you-zan-yi-dong-androidzu-jian-hua-fang-an/)
@@ -144,4 +124,5 @@ release {
 - [ABCL安卓快速开发框架](https://github.com/hslooooooool/abcl)
 - [ABCL安卓快速开发框架之L层](https://github.com/hslooooooool/abcl-l)
 - [ABCL安卓快速开发框架之C层](https://github.com/hslooooooool/abcl-c)
+- [ABCL安卓快速开发框架之B层](https://github.com/hslooooooool/abcl-b)
 - [ABCL测试使用的后台代码](https://github.com/hslooooooool/ktorm-demo)
