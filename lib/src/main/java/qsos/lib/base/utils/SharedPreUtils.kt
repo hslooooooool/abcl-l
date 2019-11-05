@@ -6,7 +6,7 @@ import android.content.Context
  * @author : 华清松
  * SharedPreferences 工具类
  */
-object SharedPreUtils {
+internal object SharedPreUtils {
 
     private const val SHARED_PRE = "QSOS_SHARED_PRE"
     /**第一次启动APP*/

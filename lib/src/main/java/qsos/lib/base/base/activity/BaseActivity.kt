@@ -32,9 +32,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
 
     override var isOrientation: Boolean = true
-        protected set(value) {
-            field = value
-        }
+        protected set
 
     /*注意调用顺序*/
 

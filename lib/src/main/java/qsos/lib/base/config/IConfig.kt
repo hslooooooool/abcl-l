@@ -6,10 +6,10 @@ package qsos.lib.base.config
  */
 interface IConfig {
 
-    /**开启阿里路由调试*/
+    /**开启 ARouter 路由调试*/
     var debugARouter: Boolean
 
-    /**开启日志打印*/
+    /**开启 Timber 日志打印*/
     var debugTimber: Boolean
 
 }

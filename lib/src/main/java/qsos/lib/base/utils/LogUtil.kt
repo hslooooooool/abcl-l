@@ -10,6 +10,12 @@ import timber.log.Timber
 object LogUtil {
 
     private var isOpen = BuildConfig.DEBUG
+
+    fun open(open: Boolean, tree: Timber.Tree? = null) {
+        this.isOpen = open
+        tree?.let { Timber.plant(it) }
+    }
+
     private var TAG = "日志"
 
     init {
