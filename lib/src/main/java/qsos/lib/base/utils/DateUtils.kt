@@ -111,8 +111,8 @@ object DateUtils {
     }
 
     /**将时间转为Date*/
-    fun strToDate(strDate: String): Date? {
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    fun strToDate(strDate: String, pattern: String = "yyyy-MM-dd HH:mm:ss"): Date? {
+        val formatter = SimpleDateFormat(pattern)
         val pos = ParsePosition(0)
         return formatter.parse(strDate, pos)
     }
