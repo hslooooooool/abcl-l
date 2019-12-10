@@ -30,7 +30,7 @@ object DateUtils {
     }
 
     /**将时间转为 String */
-    fun format(millis: Long? = null, date: Date?, pattern: String? = null, timeType: TimeType? = TimeType.YMDHMS): String {
+    fun format(millis: Long? = null, date: Date? = null, pattern: String? = null, timeType: TimeType? = TimeType.YMDHMS): String {
         if ((millis == null && date == null) || (timeType == null && pattern == null)) {
             return ""
         }
