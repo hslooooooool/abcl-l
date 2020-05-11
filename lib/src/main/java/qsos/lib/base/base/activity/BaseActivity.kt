@@ -1,5 +1,6 @@
 package qsos.lib.base.base.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -15,41 +16,34 @@ import qsos.lib.base.utils.LogUtil
  * @author : 华清松
  * Base Activity
  */
-abstract class BaseActivity : AppCompatActivity(), BaseView {
+abstract class BaseActivity(
+        private val layoutId: Int? = null,
+        private val reload: Boolean = false,
+        private val isOrientation: Boolean = true
+) : AppCompatActivity(), BaseView {
 
     open lateinit var mContext: Context
 
-    abstract val layoutId: Int?
-
-    /**视图重载是否重新加载数据*/
-    abstract val reload: Boolean
-
     override val defLayoutId: Int = R.layout.base_default
-
-    override var isActive: Boolean = false
-        protected set(value) {
-            field = value
-        }
-
-    override var isOrientation: Boolean = true
-        protected set
+    override var viewActive: Boolean = false
 
     /*注意调用顺序*/
 
     /**初始化数据*/
     abstract fun initData(savedInstanceState: Bundle?)
 
-    /**初始化试图*/
+    /**初始化视图*/
     abstract fun initView()
 
     /**获取数据*/
-    abstract fun getData()
+    abstract fun getData(loadMore: Boolean = true)
 
     override fun startActivity(intent: Intent) {
         LogUtil.i("启动:$localClassName")
         super.startActivity(intent)
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(bundle: Bundle?) {
         LogUtil.i("创建:$localClassName")
         super.onCreate(bundle)
@@ -77,14 +71,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun onStart() {
         LogUtil.i("开启:$localClassName")
         super.onStart()
-        isActive = true
+        viewActive = true
     }
 
     override fun onResume() {
         LogUtil.i("当前:$localClassName")
         super.onResume()
         if (reload) {
-            getData()
+            getData(false)
         }
     }
 
@@ -96,7 +90,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun onStop() {
         LogUtil.i("停止:$localClassName")
         super.onStop()
-        isActive = false
+        viewActive = false
     }
 
     override fun finish() {

@@ -1,6 +1,5 @@
 package qsos.lib.base.base.fragment
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,30 +14,15 @@ import qsos.lib.base.utils.LogUtil
  * @author : 华清松
  * BaseFragment
  */
-@SuppressLint("SetTextI18n")
-abstract class BaseFragment : Fragment(), BaseView {
-
-    override var isActive: Boolean = false
-        protected set(value) {
-            field = value
-        }
-
-    override var isOrientation: Boolean = true
-        protected set(value) {
-            field = value
-        }
-
-    override val defLayoutId: Int = R.layout.base_default
+abstract class BaseFragment(
+        private val layoutId: Int? = null,
+        private val reload: Boolean = false
+) : Fragment(), BaseView {
 
     lateinit var mContext: Context
 
-    private var mainView: View? = null
-
-    /**设置视图ID*/
-    abstract val layoutId: Int?
-
-    /**视图重载是否重新加载数据*/
-    abstract val reload: Boolean
+    override val defLayoutId: Int = R.layout.base_default
+    override var viewActive: Boolean = false
 
     /*注意调用顺序*/
 
@@ -49,30 +33,31 @@ abstract class BaseFragment : Fragment(), BaseView {
     abstract fun initView(view: View)
 
     /**获取数据*/
-    abstract fun getData()
+    abstract fun getData(loadMore: Boolean = true)
 
     override fun onCreate(bundle: Bundle?) {
+        LogUtil.i("onCreate:${javaClass.name}")
         super.onCreate(bundle)
         initData(bundle)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
-        LogUtil.i("创建:${javaClass.name}")
+        LogUtil.i("onCreateView:${javaClass.name}")
         mContext = this.context!!
-        mainView = inflater.inflate(layoutId ?: defLayoutId, container, false)
-        return mainView
+        return inflater.inflate(layoutId ?: defLayoutId, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        LogUtil.i("onViewCreated:${javaClass.name}")
         super.onViewCreated(view, savedInstanceState)
         initView(view)
     }
 
     override fun onResume() {
+        LogUtil.i("onResume:${javaClass.name}")
         super.onResume()
-        // 页面重现，重新加载数据
         if (reload) {
-            getData()
+            getData(false)
         }
     }
 

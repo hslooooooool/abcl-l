@@ -1,5 +1,7 @@
 package qsos.lib.base.config
 
+import qsos.lib.base.utils.LogUtil
+
 /**
  * @author : 华清松
  * 框架配置清单
@@ -10,6 +12,6 @@ interface IConfig {
     var debugARouter: Boolean
 
     /**开启 Timber 日志打印*/
-    var debugTimber: Boolean
+    var debugTimber: LogUtil.LEVEL
 
 }
