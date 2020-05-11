@@ -8,7 +8,7 @@ import qsos.lib.base.base.holder.BaseHolder
  * @author : 华清松
  * BaseNormalAdapter
  */
-class BaseNormalAdapter<T>(
+class NormalAdapter<T>(
         @LayoutRes private val layoutId: Int,
         list: ArrayList<T>,
         private val setHolder: (holder: BaseHolder<T>, data: T, position: Int) -> Unit
