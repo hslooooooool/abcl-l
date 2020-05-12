@@ -19,7 +19,7 @@ abstract class BaseFragment(
         private val reload: Boolean = false
 ) : Fragment(), BaseView {
 
-    lateinit var mContext: Context
+    open lateinit var mContext: Context
 
     override val defLayoutId: Int = R.layout.base_default
     override var viewActive: Boolean = false

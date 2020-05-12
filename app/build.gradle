@@ -4,8 +4,8 @@ apply from: '../base.gradle'
 
 android {
     defaultConfig {
-        resourcePrefix "app_"
         applicationId "qsos.lib.demo"
+        minSdkVersion 21
     }
 
     // 自定义apk名称含版本号信息

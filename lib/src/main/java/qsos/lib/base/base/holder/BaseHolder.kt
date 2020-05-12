@@ -12,7 +12,7 @@ abstract class BaseHolder<T>(
 ) : RecyclerView.ViewHolder(itemView) {
 
     /**设置数据 */
-    abstract fun setData(data: T, position: Int)
+    abstract fun bind(data: T, position: Int)
 
     /** 释放资源 */
     open fun release() {}

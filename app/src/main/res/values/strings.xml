@@ -1,4 +1,5 @@
 <resources>
 	<string name="app">QSOS-LIB</string>
 	<string name="app_welcome">技术让生活更简单</string>
+	<string name="avatar">avatar</string>
 </resources>

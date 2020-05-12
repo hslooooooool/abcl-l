@@ -2,4 +2,8 @@
 <resources>
 	<string name="nothing">Nothing!</string>
 	<string name="welcome">技术让生活更简单</string>
+	<string name="test_long">技术让生活更简单,技术让生活更简单,技术让生活更简单,技术让生活更简单,
+		技术让生活更简单,技术让生活更简单,技术让生活更简单,技术让生活更简单,技术让生活更简单,
+		技术让生活更简单,技术让生活更简单,技术让生活更简单</string>
+	
 </resources>

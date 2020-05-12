@@ -10,8 +10,12 @@ import androidx.fragment.app.FragmentPagerAdapter
  */
 class BaseFragmentAdapter(
         fm: FragmentManager,
-        var list: List<Fragment>
-) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        private var list: List<Fragment>,
+        resume: Boolean = true
+) : FragmentPagerAdapter(
+        fm,
+        if (resume) BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT else BEHAVIOR_SET_USER_VISIBLE_HINT
+) {
 
     override fun getItem(position: Int): Fragment {
         return list[position]
