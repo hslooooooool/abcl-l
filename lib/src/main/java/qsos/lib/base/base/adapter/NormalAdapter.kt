@@ -6,22 +6,18 @@ import qsos.lib.base.base.holder.BaseHolder
 
 /**
  * @author : 华清松
- * BaseNormalAdapter
+ * 单类型列表项容器 NormalAdapter
  */
-class BaseNormalAdapter<T>(
+class NormalAdapter<T>(
         @LayoutRes private val layoutId: Int,
         list: ArrayList<T>,
         private val setHolder: (holder: BaseHolder<T>, data: T, position: Int) -> Unit
 ) : BaseAdapter<T>(list) {
 
     override fun getHolder(view: View, viewType: Int): BaseHolder<T> {
-        return BaseNormalHolder(view, setHolder)
+        return NormalHolder(view, setHolder)
     }
 
     override fun getLayoutId(viewType: Int): Int = layoutId
-
-    override fun onItemClick(view: View, position: Int, obj: Any?) {}
-
-    override fun onItemLongClick(view: View, position: Int, obj: Any?) {}
 
 }

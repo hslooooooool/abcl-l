@@ -5,13 +5,13 @@ import qsos.lib.base.base.holder.BaseHolder
 
 /**
  * @author : 华清松
- * BaseNormalHolder
+ * NormalHolder
  */
-class BaseNormalHolder<T>(
+class NormalHolder<T>(
         val view: View,
         private val setHolder: (holder: BaseHolder<T>, data: T, position: Int) -> Unit
 ) : BaseHolder<T>(view) {
-    override fun setData(data: T, position: Int) {
+    override fun bind(data: T, position: Int) {
         setHolder(this, data, position)
     }
 }

@@ -5,8 +5,8 @@ import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import qsos.lib.base.config.IConfig
+import qsos.lib.base.utils.LogUtil
 import qsos.lib.base.utils.SharedPreUtils
-import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 /**
@@ -15,11 +15,12 @@ import timber.log.Timber.DebugTree
  */
 open class BaseApplication(
         override var debugARouter: Boolean = false,
-        override var debugTimber: Boolean = false
+        override var debugTimber: LogUtil.LEVEL = LogUtil.LEVEL.A
 ) : MultiDexApplication(), IConfig {
 
     companion object {
         lateinit var appContext: BaseApplication
+
         /**Application 初始化是否完成*/
         var buildFinish: Boolean = false
     }
@@ -35,9 +36,7 @@ open class BaseApplication(
         ARouter.init(appContext)
 
         /**Timber 日志*/
-        if (debugTimber) {
-            Timber.plant(DebugTree())
-        }
+        LogUtil.open(debugTimber, DebugTree())
     }
 
     override fun attachBaseContext(base: Context?) {

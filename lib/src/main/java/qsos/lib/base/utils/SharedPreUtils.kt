@@ -9,6 +9,7 @@ import android.content.Context
 internal object SharedPreUtils {
 
     private const val SHARED_PRE = "QSOS_SHARED_PRE"
+
     /**第一次启动APP*/
     const val FIRST_LAUNCH = "FIRST_LAUNCH"
 

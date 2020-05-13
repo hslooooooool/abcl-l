@@ -9,8 +9,5 @@ interface BaseView {
     val defLayoutId: Int
 
     /**是否处于前台*/
-    val isActive: Boolean
-
-    /**是否竖屏显示*/
-    val isOrientation: Boolean
+    var viewActive: Boolean
 }

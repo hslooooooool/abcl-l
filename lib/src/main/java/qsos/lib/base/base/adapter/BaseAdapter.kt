@@ -9,7 +9,6 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import qsos.lib.base.base.holder.BaseHolder
-import qsos.lib.base.callback.OnListItemClickListener
 
 /**
  * @author : 华清松
@@ -18,7 +17,7 @@ import qsos.lib.base.callback.OnListItemClickListener
 abstract class BaseAdapter<T> constructor(
         open var data: ArrayList<T>,
         open val mRecyclerView: RecyclerView? = null
-) : RecyclerView.Adapter<BaseHolder<T>>(), OnListItemClickListener, DefaultLifecycleObserver {
+) : RecyclerView.Adapter<BaseHolder<T>>(), DefaultLifecycleObserver {
 
     open var mContext: Context? = null
 
@@ -38,7 +37,7 @@ abstract class BaseAdapter<T> constructor(
 
     /**绑定数据*/
     override fun onBindViewHolder(holder: BaseHolder<T>, position: Int) {
-        holder.setData(data[position], position)
+        holder.bind(data[position], position)
     }
 
     /**返回数据个数*/
