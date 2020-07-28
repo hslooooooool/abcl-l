@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-/**
+/**BaseFragmentAdapter
  * @author : 华清松
- * BaseFragmentAdapter
+ *
  */
 class BaseFragmentAdapter(
         fm: FragmentManager,

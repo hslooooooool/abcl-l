@@ -2,9 +2,9 @@ package qsos.lib.base.callback
 
 import android.view.View
 
-/**
+/**RecyclerView 子项点击监听
  * @author : 华清松
- * RecyclerView 子项点击监听
+ *
  */
 interface OnItemListener<T> {
     /**

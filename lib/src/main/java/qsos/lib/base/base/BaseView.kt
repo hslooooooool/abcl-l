@@ -1,8 +1,8 @@
 package qsos.lib.base.base
 
-/**
+/**View 接口
  * @author : 华清松
- * View 接口
+ *
  */
 interface BaseView {
     /**视图ID*/

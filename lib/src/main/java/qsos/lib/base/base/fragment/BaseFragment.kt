@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import qsos.lib.base.R
 import qsos.lib.base.base.BaseView
 
-/**
+/**BaseFragment
  * @author : 华清松
- * BaseFragment
+ *
  */
 abstract class BaseFragment(
         private val layoutId: Int? = null,

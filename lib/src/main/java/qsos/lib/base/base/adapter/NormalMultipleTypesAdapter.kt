@@ -5,9 +5,9 @@ import androidx.annotation.LayoutRes
 import qsos.lib.base.R
 import qsos.lib.base.base.holder.BaseHolder
 
-/**
+/**多类型列表项容器 NormalMultipleTypesAdapter
  * @author : 华清松
- * 多类型列表项容器 NormalMultipleTypesAdapter
+ *
  */
 class NormalMultipleTypesAdapter<T : NormalMultipleTypesAdapter.MultipleType>(
         list: ArrayList<T>,

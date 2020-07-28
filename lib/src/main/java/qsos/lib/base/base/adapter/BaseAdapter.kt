@@ -10,6 +10,7 @@ import qsos.lib.base.base.holder.BaseHolder
 
 /**BaseAdapter
  * @author : 华清松
+ *
  */
 abstract class BaseAdapter<T> constructor(
         open var data: ArrayList<T>,

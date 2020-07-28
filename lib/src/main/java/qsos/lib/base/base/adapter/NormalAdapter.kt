@@ -4,9 +4,9 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import qsos.lib.base.base.holder.BaseHolder
 
-/**
+/**单类型列表项容器 NormalAdapter
  * @author : 华清松
- * 单类型列表项容器 NormalAdapter
+ *
  */
 class NormalAdapter<T>(
         @LayoutRes private val layoutId: Int,

@@ -9,9 +9,9 @@ import qsos.lib.base.R
 import qsos.lib.base.base.BaseView
 import qsos.lib.base.utils.ActivityManager
 
-/**
+/**BaseActivity
  * @author : 华清松
- * Base Activity
+ *
  */
 abstract class BaseActivity(
         private val layoutId: Int? = null,

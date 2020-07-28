@@ -3,9 +3,9 @@ package qsos.lib.base.base.holder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-/**
+/**子项布局 Holder
  * @author : 华清松
- * 子项布局 Holder
+ *
  */
 abstract class BaseHolder<T>(
         itemView: View
