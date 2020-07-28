@@ -36,6 +36,16 @@ android {
 
 dependencies {
     api project(':lib')
+
+    implementation(
+            'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72',
+            'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3',
+            'androidx.core:core-ktx:1.2.0',
+            'androidx.appcompat:appcompat:1.1.0',
+            'androidx.annotation:annotation:1.1.0',
+            'androidx.recyclerview:recyclerview:1.1.0',
+            'com.android.support.constraint:constraint-layout:1.1.3'
+    )
 }
 
 // 获取编译时间

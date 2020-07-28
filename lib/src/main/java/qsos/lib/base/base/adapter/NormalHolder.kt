@@ -3,9 +3,9 @@ package qsos.lib.base.base.adapter
 import android.view.View
 import qsos.lib.base.base.holder.BaseHolder
 
-/**
+/**NormalHolder
  * @author : 华清松
- * NormalHolder
+ *
  */
 class NormalHolder<T>(
         val view: View,

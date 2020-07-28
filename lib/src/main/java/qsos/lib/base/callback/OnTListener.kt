@@ -1,8 +1,8 @@
 package qsos.lib.base.callback
 
-/**
+/**泛型回调
  * @author : 华清松
- * 类说明：泛型回调
+ *
  */
 interface OnTListener<T> {
 

@@ -2,9 +2,9 @@ package qsos.lib.base.utils
 
 import android.app.Activity
 
-/**
+/**Activity 管理类
  * @author : 华清松
- * Activity 管理类
+ *
  */
 object ActivityManager {
 
