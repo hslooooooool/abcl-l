@@ -22,6 +22,31 @@ import android.widget.TextView
 import java.security.MessageDigest
 import kotlin.experimental.and
 
+
+/**
+ * dip转pix
+ */
+fun Int.dip2px(context: Context): Int {
+    val scale = context.resources.displayMetrics.density
+    return (this * scale + 0.5f).toInt()
+}
+
+/**
+ * sp
+ */
+fun Int.sp2px(context: Context): Int {
+    val fontScale = context.resources.displayMetrics.scaledDensity
+    return (this * fontScale + 0.5f).toInt()
+}
+
+/**
+ * pix转dip
+ */
+fun Int.pix2dip(context: Context): Int {
+    val densityDpi = context.resources.displayMetrics.density
+    return (this / densityDpi + 0.5f).toInt()
+}
+
 /**
  * @author : 华清松
  * 工具类
@@ -53,22 +78,6 @@ object BaseUtils {
     }
 
     /**
-     * dip转pix
-     */
-    fun dip2px(context: Context, dpValue: Float): Int {
-        val scale = getResources(context).displayMetrics.density
-        return (dpValue * scale + 0.5f).toInt()
-    }
-
-    /**
-     * sp
-     */
-    fun sp2px(context: Context, spValue: Float): Int {
-        val fontScale = context.resources.displayMetrics.scaledDensity
-        return (spValue * fontScale + 0.5f).toInt()
-    }
-
-    /**
      * 获得资源
      */
     private fun getResources(context: Context): Resources {
@@ -80,14 +89,6 @@ object BaseUtils {
      */
     fun getStringArray(context: Context, id: Int): Array<String> {
         return getResources(context).getStringArray(id)
-    }
-
-    /**
-     * pix转dip
-     */
-    fun pix2dip(context: Context, pix: Int): Int {
-        val densityDpi = getResources(context).displayMetrics.density
-        return (pix / densityDpi + 0.5f).toInt()
     }
 
     /**

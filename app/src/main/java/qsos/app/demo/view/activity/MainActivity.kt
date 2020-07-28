@@ -24,7 +24,6 @@ class MainActivity : BaseActivity(R.layout.act_main, true) {
 
     override fun initView() {
         viewpager.adapter = BaseFragmentAdapter(supportFragmentManager, mFragments)
-
     }
 
     override fun getData(loadMore: Boolean) {

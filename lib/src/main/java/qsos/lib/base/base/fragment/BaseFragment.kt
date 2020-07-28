@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import qsos.lib.base.R
 import qsos.lib.base.base.BaseView
-import qsos.lib.base.utils.LogUtil
 
 /**
  * @author : 华清松
@@ -36,25 +35,21 @@ abstract class BaseFragment(
     abstract fun getData(loadMore: Boolean = true)
 
     override fun onCreate(bundle: Bundle?) {
-        LogUtil.i("onCreate:${javaClass.name}")
         super.onCreate(bundle)
         initData(bundle)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
-        LogUtil.i("onCreateView:${javaClass.name}")
         mContext = this.context!!
         return inflater.inflate(layoutId ?: defLayoutId, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        LogUtil.i("onViewCreated:${javaClass.name}")
         super.onViewCreated(view, savedInstanceState)
         initView(view)
     }
 
     override fun onResume() {
-        LogUtil.i("onResume:${javaClass.name}")
         super.onResume()
         if (reload) {
             getData(false)

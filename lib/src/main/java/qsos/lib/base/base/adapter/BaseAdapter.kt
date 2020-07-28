@@ -5,19 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import qsos.lib.base.base.holder.BaseHolder
 
-/**
+/**BaseAdapter
  * @author : 华清松
- * BaseAdapter
  */
 abstract class BaseAdapter<T> constructor(
         open var data: ArrayList<T>,
         open val mRecyclerView: RecyclerView? = null
-) : RecyclerView.Adapter<BaseHolder<T>>(), DefaultLifecycleObserver {
+) : RecyclerView.Adapter<BaseHolder<T>>() {
 
     open var mContext: Context? = null
 
@@ -48,11 +45,6 @@ abstract class BaseAdapter<T> constructor(
     /**获得某个 position 上的 item 的数据*/
     fun getItem(position: Int): T {
         return data[position]
-    }
-
-    override fun onDestroy(owner: LifecycleOwner) {
-        release()
-        super.onDestroy(owner)
     }
 
     /**遍历所有 RecyclerView 中的 Holder,释放他们需要释放的资源*/

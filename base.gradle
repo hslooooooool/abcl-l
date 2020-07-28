@@ -4,32 +4,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-        arg("room.schemaLocation", "$projectDir/schemas".toString())
-    }
-}
-
-kotlin {
-    experimental {
-        // 开启kotlin协程
-        coroutines 'enable'
-    }
-}
-
 android {
-    compileSdkVersion build_versions.SDK_COMPILE
+    compileSdkVersion 30
 
     androidExtensions {
         experimental = true
     }
 
     defaultConfig {
-        minSdkVersion build_versions.SDK_MIN
-        targetSdkVersion build_versions.SDK_TARGET
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 3
-        versionName "2.0.0"
+        versionName "3.0.0"
         // 增加对svg图像的支持
         vectorDrawables.useSupportLibrary = true
 
@@ -42,7 +28,6 @@ android {
     }
 
     sourceSets {
-        // 数据库概要、记录存放位置
         androidTest.assets.srcDirs += files("$projectDir/schemas")
 
         main {
@@ -86,24 +71,8 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    // Kotlin
-    testImplementation deps.kotlin.test
-    // Room数据库
-    kapt deps.room.compiler
-    // 阿里路由
-    kapt deps.arouter_compiler
-    // LifeCycle
-    annotationProcessor deps.lifecycle.compiler
-    kapt deps.lifecycle.compiler
 }
 
 repositories {
     mavenCentral()
 }
-
-// 获取编译时间
-static def apkTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
-}
-
-ext.time = apkTime()

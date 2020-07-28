@@ -20,14 +20,5 @@
 		android:background="#FFFFFF"
 		android:clipToPadding="false"
 		android:elevation="1dp" />
-	
-	<androidx.appcompat.widget.Toolbar
-		android:id="@+id/toolbar"
-		style="@style/Widget.Plaid.HomeToolbar"
-		android:layout_width="match_parent"
-		android:layout_height="?android:actionBarSize"
-		android:elevation="1dp"
-		android:outlineProvider="none"
-		android:title="@string/nothing" />
-	 
+
 </FrameLayout>
