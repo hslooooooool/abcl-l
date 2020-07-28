@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    api project(':lib')
+    api project(':activity_base')
 
     implementation(
             'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72',
